@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-once>{{msg}}</span> 
+        <span v-text="msg"></span>
+        <span v-html="msg"></span>
+        <a v-bind:href="url">Click</a>
+        <h2>{{msg.length}}</h2>
+        <h3>{{age === 4 ? 'YES' : 'NO'}}</h3>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'Hello World!',
+                age: 4,
+                user:{
+                    name: 'John Doe',
+                    email: 'jdoe@mail.ru'
+                },
+            url:'http://google.com'
+            }
+        });
+    </script>
+</body>
+</html>

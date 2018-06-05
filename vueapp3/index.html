@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .error{
+            color: red;
+            font-size: 20px;
+        }
+
+        .active{
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="[activeClass, errorClass]">Hello world</div>
+        <div v-bind:style="{color: baseStyles.activeColor, fontSize: baseStyles.fontSize+'px'}">Hello World</div>
+        <div v-bind:style="errorStyles">Hello World</div>
+
+    </div>
+    <script>
+        let value =[];
+        
+        let app = new Vue({
+            el:'#app',
+            data:{
+                isActive:true,
+                activeClass:'active',
+                errorClass:'error',
+                baseStyles:{
+                    activeColor:'blue',
+                    fontSize: '30',
+                },
+                errorStyles:{
+                    color: 'red',
+                    fontSize: '50px',
+                    textDecoration: 'underline'
+                },
+   
+            }      
+        });
+
+    </script>
+</body>
+</html>

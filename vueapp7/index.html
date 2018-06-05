@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+    h1{
+        background: coral;
+        color: #fff;
+        padding: 5px;
+
+    }
+
+    .fade-enter-active, .fade-leave-active{
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to{
+        opacity: 0;
+    }
+
+    /* Enter and leave animations can use different */
+    /* durations and timing functions.              */
+    .slide-fade-enter-active {
+    transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(100px);
+    opacity: 0;
+    }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <button v-on:click="show = !show">Show</button>
+        <!-- <button @click="show = !show">
+            Toggle render
+        </button> -->
+
+        <!-- <transition name='fade'> -->
+        <transition name="slide-fade">
+            <h1 v-if="show">{{msg}}</h1>
+        </transition> 
+
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'Hello World!',
+                show: true
+            }
+        });
+    </script>
+</body>
+</html>

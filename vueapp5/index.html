@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <button v-on:click="counter+=1">Add1</button>
+            <p>{{counter}}</p>
+        </div>
+        <div>
+            <button class="btn" v-on:click="greet(msg, $event)">Click</button>
+        </div>
+        <div>
+            <input type="text" v-on:keyup="keypress" v-on:keypress.enter="keysubmit">
+        </div>
+        <br>
+        <div>
+            <form v-on:submit="formSubmit">
+                <input v-model="inputVal" type="text" placeholder="Enter Smth...">
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const values = [];
+        const request = function(){
+            return values[values.length-1];
+        }
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'Hello World!',
+                counter: 0,
+                inputVal:''
+            },
+            methods: {
+                greet: function(e, event){
+                    console.log(e);
+                    console.log(event.target.tagName);
+                    console.log(event.target.className);
+                },
+                keypress(event){
+                    //console.log(event.which); // numb of key
+                    values.push(event.target.value);
+                    //console.log(event.target.value);
+                },
+                keysubmit(event){
+                    console.log(request());
+                },
+                formSubmit: function(e){
+                    e.preventDefault();
+                    console.log(this.inputVal);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

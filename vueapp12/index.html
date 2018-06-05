@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <hello v-bind:msg2='5'></hello>
+    </div>
+    <script>
+        
+
+        var Hello = {
+            name: 'hello',
+            props:{
+                msg:{
+                    type: String,
+                    default: 'hello'
+                },
+                msg2:{
+                    type: [Number, String],
+                    default:5
+                },
+                msg3:{
+                    type: Object,
+                    default: function () {
+                        return {
+                            text: 'Goodbye',
+                        }
+                    }
+                },
+                msg4:{
+                    default: function(){
+                        return 'i am a function'
+                    }
+                }
+            },
+            template: '<h1>{{msg4}}</h1>',
+            
+        } 
+
+
+        let app = new Vue({
+            el:'#app',
+            components: {
+                Hello
+            },
+            data:{
+                msg:'Hello World!'
+            }
+        });
+    </script>
+</body>
+</html>

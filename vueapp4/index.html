@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input v-model="msg" placeholder="Enter text" type="radio" name="isActive" value="active">active
+            <input v-model="msg" placeholder="Enter text" type="radio" name="isActive" value="error">error
+            <p>{{msg}}</p>
+            <div v-if="msg && msg =='error'" v-bind:style="errorStyle"></div>
+            <div v-if="msg && msg =='active'" v-bind:style="activeStyle"></div>    
+        </div>
+        <hr>
+        <div>
+            <input type="checkbox" v-model="checked"> click to true
+            <p>Checked: {{checked}}</p>
+        </div>
+        <hr>
+        <div>
+            <input type="checkbox" value="Mike" v-model="checkedNames"><label>Mike</label>
+            <input type="checkbox" value="Steve" v-model="checkedNames"><label>Steve</label>
+            <input type="checkbox" value="Jill" v-model="checkedNames"><label>Jill</label>
+            <p>Selected: {{checkedNames}}</p>
+        </div>
+        <hr>
+        <div>
+            <input type="radio" value="One" v-model="radio"><label>One</label>
+            <input type="radio" value="Two" v-model="radio"><label>Two</label>
+            <input type="radio" value="Three" v-model="radio"><label>Three</label>
+            <p>Choosen: {{radio}}</p>
+        </div>
+        <hr>
+        <div>
+            <select v-model="selected">
+                <option>One</option>
+                <option>Two</option>
+                <option>Three</option>
+            </select>
+            <p>Selected: {{selected}}</p>
+        </div>
+        <hr>
+        <div>
+            <select multiple v-model="selectedOpt">
+                <option v-for="option in options" v-bind:value="option.value">
+                    {{option.text}}
+                </option>
+            </select>
+            <p>Selected: {{selectedOpt}}</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                checked:false,
+                checkedNames:[],
+                radio:'',
+                selected:[],
+                selectedOpt:[],
+                options: [
+                    {text: 'One', value: 'A'},
+                    {text: 'Two', value: 'B'},
+                    {text: 'Three', value: 'C'}
+                ],
+                activeStyle:{
+                    backgroundColor: 'green',
+                    width:'400px',
+                    height:'50px'   
+                },
+                errorStyle:{
+                    backgroundColor: 'red',
+                    width:'400px',
+                    height:'50px'   
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

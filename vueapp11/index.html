@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <hello></hello>
+        <simple-counter></simple-counter>
+    </div>
+    <script>
+        Vue.component('simple-counter',{
+            template: '<button v-on:click="counter +=1">{{counter}}</button>',
+            data: function(){
+                return{
+                    counter:0
+                }
+            }
+        });
+
+        var Hello = {
+            name: 'hello',
+            template: '<h1>{{msg}}</h1>',
+            data(){
+                return {
+                    msg:'hello world'
+                }
+            }
+        } 
+
+        let app = new Vue({
+            el:'#app',
+            components: {
+                Hello
+            },
+            data:{
+                msg:'Hello World!'
+            }
+        });
+    </script>
+</body>
+</html>

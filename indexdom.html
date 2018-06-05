@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .error{
+            color: red;
+            font-size: 50px;
+        }
+
+        .active{
+            color: green;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="radio" name="radio" value="active" id="active">active
+        <input type="radio" name="radio" value="error" id="error">error
+        <input type="submit" value="sumbit" id="submit">
+    </form>
+    <div id="app">
+        <div v-if="activeClass == 'active'" v-bind:class="activeClass">Color</div>
+        <div v-if="activeClass == 'error'" v-bind:class="errorClass">Color</div>
+    </div>
+    <script>
+        let value = [];
+        
+        let app = new Vue({
+            el:'#app',
+            data:{
+                isActive:true,
+                activeClass:'active',
+                errorClass:'error',
+                val:()=>value[value.length-1]
+    
+            }      
+        });
+
+        document.getElementById('submit').addEventListener('click', action);
+
+        function action(e){
+            changeColor(e);
+            return app.activeClass = app.val();
+        }
+        function changeColor(e){
+            e.preventDefault();
+            let select = document.querySelector('input[name="radio"]:checked').value;
+            return value.push(select);
+        }
+        
+    </script>
+</body>
+</html>

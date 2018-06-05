@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="msg" placeholder="Enter text" type="radio" name="isActive" value="active">active
+        <input v-model="msg" placeholder="Enter text" type="radio" name="isActive" value="error">error
+        {{msg}}
+        <div v-if="msg && msg =='error'" v-bind:style="errorStyle"></div>
+        <div v-if="msg && msg =='active'" v-bind:style="activeStyle"></div>    
+    </div>
+
+    <button id="button">click</button>
+    <button id="delete">delete</button>
+    <div style="height:100px; width:400px" id="block"></div>
+
+    <script>
+        const state= {
+            position: ''
+        }
+        
+
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                activeStyle:{
+                    backgroundColor: 'green',
+                    width:'400px',
+                    height:'50px'   
+                },
+                errorStyle:{
+                    backgroundColor: 'red',
+                    width:'400px',
+                    height:'50px'   
+                }
+            }
+        });
+
+        document.getElementById('button').addEventListener('click', action);
+        document.getElementById('delete').addEventListener('click', action1);
+        const div = document.getElementById('block');
+
+        function action(e){
+            e.preventDefault();
+            document.addEventListener('mousemove', color);          
+        }
+        function action1(e){
+            e.preventDefault();
+            document.removeEventListener('mousemove', color);
+            div.style.backgroundColor = '';       
+        }
+
+        function color(e){
+            state.position=`rgb(${e.offsetX}, ${e.offsetY}, 40)`;
+            div.style.backgroundColor = state.position;
+            console.log(div);
+        }
+    </script>
+</body>
+</html>
